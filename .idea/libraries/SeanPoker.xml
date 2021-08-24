@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SeanPoker">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/SeanPoker/dist/SeanPoker.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
