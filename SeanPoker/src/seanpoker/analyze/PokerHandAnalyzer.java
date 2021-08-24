@@ -1,12 +1,13 @@
-/**
- * Credit for this library:
- * https://rosettacode.org/wiki/Poker_hand_analyser#Java
- * Content is available under GNU Free Documentation License 1.2
- */
 package seanpoker.analyze;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import seanpoker.Card;
 import seanpoker.Score;
 
 /**
@@ -18,7 +19,12 @@ public class PokerHandAnalyzer
 	
 	public final static String faces = "AKQJT98765432";
     public final static String suits = "HDSC"; //Hearts, Diamonds, Spades, Clubs
+
+
+	
     public final String[] deck = buildDeck();
+
+	private final int NUMBER_OF_CARDS = 52; // constant number of Cards
 	
 	public String[] buildDeck() 
 	{
@@ -33,6 +39,11 @@ public class PokerHandAnalyzer
 		return dck;
 	}
 	
+	/**
+ * Credit for this library:
+ * https://rosettacode.org/wiki/Poker_hand_analyser#Java
+ * Content is available under GNU Free Documentation License 1.2
+ */
 	public static Score analyzeHand(final String[] hand) {
         if (hand.length != 5)
             return new Score("invalid hand: wrong number of cards", -1, hand);
@@ -67,12 +78,12 @@ public class PokerHandAnalyzer
         boolean hasFlush = (flush & (flush - 1)) == 0;
  
         if (hasStraight && hasFlush)
-            return new Score("straight-flush", 9, hand);
+            return new Score("Straight Flush", 9, hand);
  
         int total = 0;
         for (int count : faceCount) {
             if (count == 4)
-                return new Score("four-of-a-kind", 8, hand);
+                return new Score("Four of a kind", 8, hand);
             if (count == 3)
                 total += 3;
             else if (count == 2)
@@ -80,23 +91,42 @@ public class PokerHandAnalyzer
         }
  
         if (total == 5)
-            return new Score("full-house", 7, hand);
+            return new Score("Full house", 7, hand);
  
         if (hasFlush)
-            return new Score("flush", 6, hand);
+            return new Score("Flush", 6, hand);
  
         if (hasStraight)
-            return new Score("straight", 5, hand);
+            return new Score("Straight", 5, hand);
  
         if (total == 3)
-            return new Score("three-of-a-kind", 4, hand);
+            return new Score("Three of a kind", 4, hand);
  
         if (total == 4)
-            return new Score("two-pair", 3, hand);
+            return new Score("Two pair", 3, hand);
  
         if (total == 2)
-            return new Score("one-pair", 2, hand);
+            return new Score("One pair", 2, hand);
  
-        return new Score("high-card", 1, hand);
+        return new Score("High cards", 1, hand);
     }
+	
+	/**
+	 * Shuffles a deck of cards
+	 * keeps the deck and creates and returns a new deck of shuffled cards
+	*/
+    public ArrayList<String> shuffle()
+     {
+		 System.out.println(" Shuffling...Shuffling...Shuffling...\n");
+		  ArrayList<String> tempDeck = new ArrayList<String>();
+		 
+		    for (int i = 0; i < NUMBER_OF_CARDS; ++i) 
+			{
+            tempDeck.add(deck[i]);
+			}
+
+        Collections.shuffle(tempDeck);
+		  
+        return tempDeck;
+    } 
 }

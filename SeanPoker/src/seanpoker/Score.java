@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Credit for this library:
+ * https://rosettacode.org/wiki/Poker_hand_analyser#Java
+ * Content is available under GNU Free Documentation License 1.2
  */
 package seanpoker;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util;
 import java.util.Arrays;
+import java.util.HashMap;
 
-/**
- *
- * @author sean
- */
     public class Score {
         public final int weight;
         public final String name;
         public final String[] hand;
- 
+		public HashMap<String,String> suitIcons = new HashMap<>();
+
         public Score(String n, int w, String[] h) {
             weight = w;
             name = n;
@@ -24,6 +23,26 @@ import java.util.Arrays;
  
         @Override
         public String toString() {
-            return Arrays.toString(hand) + " " + name;
+            return "Your hand: "+Arrays.toString(hand) + " \nYou Have: " + name;
         }
+		
+		public String[] getIconString(String[] hand1)
+		{
+			String[] result = new String[5];
+			suitIcons.put("H", "\u2665");
+			suitIcons.put("D", "\u2666");
+			suitIcons.put("C", "\u2663");
+			suitIcons.put("S", "\u2660");
+		
+			for(String item:hand1)
+			{
+				String letter = item.substring(1,2);
+				System.out.println("letter\n"+letter);
+//				result./
+//				Util.replace(item.substring(1), suitIcons.get(letter));
+			}
+			
+			return result;
+
+		}
     }
