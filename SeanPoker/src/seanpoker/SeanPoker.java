@@ -22,10 +22,11 @@ class SeanPoker
 
 		ArrayList<String> shuffledDeck = analyzer.shuffle(); // shuffle and return the shuffled deck
 		//pop the last 5 cards from the top of the deck (like a stack)
-		String[] hand = {shuffledDeck.get(51),shuffledDeck.get(50),shuffledDeck.get(49),shuffledDeck.get(48),shuffledDeck.get(47)};
-		Score score = analyzer.analyzeHand(hand);
-		Hand cardsInHand = score.createCardsAndHand();
-		printOutputToUser(cardsInHand);
+		String[] hand = {shuffledDeck.get(51),shuffledDeck.get(50),shuffledDeck.get(49),shuffledDeck.get(48),shuffledDeck.get(47)}; //String array used for simplicity and speed
+
+		Score score = analyzer.analyzeHand(hand); //Analyze the hand and return with the score
+		Hand cardsInHand = score.createCardsAndHand(); //Creates the card objects and adds them to a Hand object
+		printOutputToUser(cardsInHand); // Finally displays Hand output to user
 	}
 
 	/**
@@ -38,10 +39,6 @@ class SeanPoker
 		for (int i=0;i<cardsInHand.cards.size();i++)
 		{
 			System.out.print(cardsInHand.cards.get(i).face + cardsInHand.cards.get(i).icon+" ");
-			if (i < cardsInHand.cards.indexOf(cardsInHand.cards.size() -1))
-			{
-				System.out.print(",");
-			}
 		}
 		System.out.println("\nYou have: "+handStrength.get(cardsInHand.getWeight()));
 	}
