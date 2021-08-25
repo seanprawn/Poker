@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -21,7 +22,7 @@ public class CardHandAnalyzer implements CardHandInterface
 
     /**
      * @return String array containing a representation of a deck of 52 cards
-     * cards are in order, (ie not shuffled yet)
+     * cards are sorted in suit and in order, (ie not shuffled yet)
      */
 	public String[] buildDeck()
 	{
@@ -40,7 +41,7 @@ public class CardHandAnalyzer implements CardHandInterface
  * Credit for this Algorithm:
  * https://rosettacode.org/wiki/Poker_hand_analyser#Java
  * Content is available under GNU Free Documentation License 1.2
-     * //output has been modified to accommodate this app//
+     * //only output has been modified to accommodate this app//
  */
 	public Score analyzeHand(final String[] hand) {
         if (hand.length != 5)
@@ -115,14 +116,27 @@ public class CardHandAnalyzer implements CardHandInterface
 	*/
     public ArrayList<String> shuffle()
      {
-		 System.out.println(" Shuffling...Shuffling...Shuffling...\n");
+		 //let the user know we are shuffling the cards
+		try {
+		 for(int i =0;i<3;i++)
+		 {
+			  System.out.print("Shuffling... ");
+			  TimeUnit.MILLISECONDS.sleep(700); //just delay each iteration by milliseconds to simulate the shuffling 
+		 }
+		} catch (InterruptedException ex) {
+		  ex.printStackTrace();
+		}
+		System.out.print("\n");
+		
+		//Create the temporary deck
 		  ArrayList<String> tempDeck = new ArrayList<>();
-
-		    for (int i = 0; i < NUMBER_OF_CARDS; ++i)
-			{
-            tempDeck.add(deck[i]);
-			}
-
+		//add the cards to the deck
+		for (int i = 0; i < NUMBER_OF_CARDS; ++i)
+		{
+		tempDeck.add(deck[i]);
+		}
+			
+		//shuffle the cards
         Collections.shuffle(tempDeck); // Use java collections to shuffle and save time complexity
 		  
         return tempDeck;

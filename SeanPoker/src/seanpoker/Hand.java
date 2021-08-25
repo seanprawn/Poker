@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * The hand object stores all the cards drawn after shuffling the deck
  * Also stores the weight of this hand
- * handStrength constants are used to output correct message to user
+ * handStrength constants are used to output correct message to user from weight
  */
 public class Hand {
     ArrayList<Card> cards;
@@ -24,11 +24,11 @@ public class Hand {
         put(9, "High Cards");
 }};
 
+	Hand(){}
     Hand(ArrayList<Card> cards, int weight)
     {
         this.cards = cards;
         this.weight = weight;
-//        System.out.println("\nCard 1 in HAND: "+this.cards.get(0).getCardDetails());
     }
 
     public ArrayList<Card> getCards() {

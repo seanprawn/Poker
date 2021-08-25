@@ -5,8 +5,8 @@ package seanpoker;
  * @author sean
  */
 public class Card {
-    public String suit;
-    public String face;
+    public String suit; //String which consists of a single letter
+    public String face; //String which consists of a single letter
     public String icon; //unicode icon used to represent the suit
 
     public Card(){}

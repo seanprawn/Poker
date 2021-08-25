@@ -24,7 +24,6 @@ public class Score {
      * Credit for this library:
      * https://rosettacode.org/wiki/Poker_hand_analyser#Java
      * Content is available under GNU Free Documentation License 1.2
-     * content has been modified to accommodate this app
      */
     public Score(String n, int w, String[] h) {
         this.weight = w;
@@ -35,7 +34,7 @@ public class Score {
     @Override
     public String toString()
     {
-        return "Your hand: "+ Arrays.toString(hand) + " \nYou Have: " + name;
+        return Arrays.toString(hand) + " " + name;
     }
 
     /**
@@ -47,7 +46,6 @@ public class Score {
     public Hand createCardsAndHand()
     {
         ArrayList<Card> result = new ArrayList<>();
-
         for (int i=0; i < hand.length;i++)
         {
             String index = this.hand[i];
